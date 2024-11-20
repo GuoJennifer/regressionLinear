@@ -6,13 +6,13 @@
 #'@param covariates vector of strings containing names of all the "X" covariates/parameters
 #'@param data dataframe with data of interest
 #'
-#'@return Matrix of estimates for regression coefficient,
+#'@return Matrix of estimates of regression coefficient,
 #'  standard errors, and t tests with p-values
 #'
 #'@examples
 #'lr_coefficients("mpg", c("cyl", "disp", "hp"), data=mtcars)
 #'
-#'@importFrom stats pt
+#'@importFrom stats pt bench
 #'
 #'@export
 #'
@@ -37,7 +37,6 @@ lr_coefficients = function (predictor, covariates, data = NULL){
 
   estimation = cbind(Estimate=c(betahat), Std_Err=se_betahat,
                      t_statistic=t_statistic, p_value=p_value)
-  rownames(estimation) = c("Intercept", covariates)
 
   return(estimation)
 }

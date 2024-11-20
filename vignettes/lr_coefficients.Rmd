@@ -32,11 +32,12 @@ The results are returned in a matrix.
 
 ## Examples
 
-The dataset used for these examples is "mtcars". "mtcars" originally came from the "Motor Trend Car Road Tests" in the 1974 Motor Trend US Magazine. It is built into base R but is included in this package to be extra sure that these examples will work.
+These is a basic example of how to use the function "lr_coefficients" in this package.
 
-These is a basic examples of how to use the function "lr_coefficients" in this package:
+The dataset used for these examples is "mtcars".
+It is built into base R but is included in this package to be extra sure that these examples will work.
 
-```{r example}
+```{r}
 
 data = mtcars
 
@@ -46,7 +47,7 @@ regressionLinear::lr_coefficients("mpg", c("cyl", "disp", "hp"), data=data)
 
 For SLR, the X covariate can be included in a vector, or not. The quotation marks should be included so that the function can be
 
-```{r example}
+```{r}
 
 data = mtcars
 
@@ -65,7 +66,9 @@ summary(lm(mpg~cyl + disp + hp, data=mtcars))
 lm(mpg~cyl + disp + hp, data=mtcars)$coef
 regressionLinear::lr_coefficients("mpg", c("cyl", "disp", "hp"), data=mtcars)
 
+
 summary(lm(drat~gear, data=mtcars))
+lm(drat~gear, data=mtcars)$coef
 regressionLinear::lr_coefficients("drat", "gear", data=mtcars)
 
 ```
@@ -74,8 +77,10 @@ Comparisons for efficiency:
 
 ```{r}
 
-system.time(lm(mpg~cyl+disp+hp+drat+wt+qsec+vs+am+gear+carb, data=mtcars))
+bench::mark( lm(mpg ~ cyl + disp + hp, data=data)$coefficients[[1]],  
+             lr_coefficients("mpg", c("cyl", "disp", "hp"), data=data)[[1,1]] )
 
-system.time(regressionLinear::lr_coefficients("mpg", c("cyl","disp","hp","drat","wt","qsec","vs","am","gear","carb"), data=mtcars))
+bench::mark(lm(mpg~cyl+disp+hp+drat+wt+qsec+vs+am+gear+carb, data=mtcars)$coefficients[[1]],
+(regressionLinear::lr_coefficients("mpg", c("cyl","disp","hp","drat","wt","qsec","vs","am","gear","carb"), data=mtcars)[[1,1]]) )
 
 ```
