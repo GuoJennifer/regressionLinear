@@ -8,8 +8,6 @@ Description: This package is a project to replicate at least some functionality 
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
-Imports: Rcpp (>= 1.0.13)
-LinkingTo: Rcpp
 Suggests: 
     knitr,
     rmarkdown,

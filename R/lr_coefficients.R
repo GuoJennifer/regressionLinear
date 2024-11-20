@@ -1,6 +1,6 @@
 #'lr_coefficients
 #'
-#'performs linear regression on
+#'performs single or multiple linear regression on selected predictor variable and covariates
 #'
 #'@param predictor name of predictor "Y" variable
 #'@param covariates vector of strings containing names of all the "X" covariates/parameters
@@ -11,6 +11,8 @@
 #'
 #'@examples
 #'lr_coefficients("mpg", c("cyl", "disp", "hp"), data=mtcars)
+#'
+#'@importFrom stats pt
 #'
 #'@export
 #'

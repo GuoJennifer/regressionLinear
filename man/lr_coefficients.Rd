@@ -18,7 +18,7 @@ Matrix of estimates for regression coefficient,
  standard errors, and t tests with p-values
 }
 \description{
-performs linear regression on
+performs single or multiple linear regression on selected predictor variable and covariates
 }
 \examples{
 lr_coefficients("mpg", c("cyl", "disp", "hp"), data=mtcars)
