@@ -36,7 +36,8 @@ lr_coefficients = function (predictor, covariates, data = NULL){
   p_value = c(2*( 1-pt(q=abs(t_statistic),df=n-p) ))
 
   estimation = cbind(Estimate=c(betahat), Std_Err=se_betahat,
-                     t_statistic=t_statistic,p_value=p_value)
+                     t_statistic=t_statistic, p_value=p_value)
+  rownames(estimation) = c("Intercept", covariates)
 
   return(estimation)
 }

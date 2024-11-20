@@ -17,28 +17,36 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/GuoJennifer/regressionLinear/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/GuoJennifer/regressionLinear/actions/workflows/R-CMD-check.yaml)
+[![Codecov test coverage](https://codecov.io/gh/GuoJennifer/regressionLinear/graph/badge.svg)](https://app.codecov.io/gh/GuoJennifer/regressionLinear)
 <!-- badges: end -->
 
 The goal of regressionLinear is to replicate at least some functionality of the lm() function in R, as a demonstration of how to create a complete R package.
 
+Currently, the package contains only one function, "lr_coefficients", which will calculate the estimated coefficients for an SLR or MLR linear regression model, as well as the standard errors, and the t-tests with p-values for each covariate.
+
 ## Installation
 
 You can install the development version of regressionLinear from [GitHub](https://github.com/) with:
+```{r}
+#install.packages("devtools")
+devtools::install_github("GuoJennifer/regressionLinear")
+```
+
+Alternatively, you can use:
 
 ```{r}
-# install.packages("pak")
+#install.packages("pak")
 pak::pak("GuoJennifer/regressionLinear")
 ```
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+This is a basic example of how to use the function "lr_coefficients" in this package:
 
 ```{r example}
 library(regressionLinear)
-## basic example code
 
-#regressionLinear::lr_coefficients("mpg", c("cyl", "disp", "hp"), data=mtcars)
+regressionLinear::lr_coefficients("mpg", c("cyl", "disp", "hp"), data=mtcars)
 
 ```
 

@@ -13,7 +13,69 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 ```
-
 ```{r setup}
 library(regressionLinear)
+```
+
+"lr_coefficients" is a function which will calculate the estimated coefficients for an SLR or MLR linear regression model, as well as the standard errors, and the t-tests with p-values for each covariate.
+
+The input takes the format "(predictor, covariates, data = NULL)":
+
+"predictor" is the name of the predictor "Y" variable, and should be a single string. lr_coefficients only performs regression that involves one outcome variable. 
+
+"covariates" is a vector of strings containing the names of all the "X" covariates/parameters.
+
+"data" should be a dataframe containing the data of interest.
+
+The results are returned in a matrix.
+
+
+## Examples
+
+The dataset used for these examples is "mtcars". "mtcars" originally came from the "Motor Trend Car Road Tests" in the 1974 Motor Trend US Magazine. It is built into base R but is included in this package to be extra sure that these examples will work.
+
+These is a basic examples of how to use the function "lr_coefficients" in this package:
+
+```{r example}
+
+data = mtcars
+
+regressionLinear::lr_coefficients("mpg", c("cyl", "disp", "hp"), data=data)
+
+```
+
+For SLR, the X covariate can be included in a vector, or not. The quotation marks should be included so that the function can be
+
+```{r example}
+
+data = mtcars
+
+regressionLinear::lr_coefficients("drat", "gear", data=data)
+regressionLinear::lr_coefficients("drat", c("gear"), data=data)
+
+```
+
+## Comparison against lm()
+
+Comparisons for accuracy:
+
+```{r}
+
+summary(lm(mpg~cyl + disp + hp, data=mtcars))
+lm(mpg~cyl + disp + hp, data=mtcars)$coef
+regressionLinear::lr_coefficients("mpg", c("cyl", "disp", "hp"), data=mtcars)
+
+summary(lm(drat~gear, data=mtcars))
+regressionLinear::lr_coefficients("drat", "gear", data=mtcars)
+
+```
+
+Comparisons for efficiency:
+
+```{r}
+
+system.time(lm(mpg~cyl+disp+hp+drat+wt+qsec+vs+am+gear+carb, data=mtcars))
+
+system.time(regressionLinear::lr_coefficients("mpg", c("cyl","disp","hp","drat","wt","qsec","vs","am","gear","carb"), data=mtcars))
+
 ```

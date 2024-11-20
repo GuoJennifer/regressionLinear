@@ -6,11 +6,18 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/GuoJennifer/regressionLinear/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/GuoJennifer/regressionLinear/actions/workflows/R-CMD-check.yaml)
+[![Codecov test
+coverage](https://codecov.io/gh/GuoJennifer/regressionLinear/graph/badge.svg)](https://app.codecov.io/gh/GuoJennifer/regressionLinear)
 <!-- badges: end -->
 
 The goal of regressionLinear is to replicate at least some functionality
 of the lm() function in R, as a demonstration of how to create a
 complete R package.
+
+Currently, the package contains only one function, “lr_coefficients”,
+which will calculate the estimated coefficients for an SLR or MLR linear
+regression model, as well as the standard errors, and the t-tests with
+p-values for each covariate.
 
 ## Installation
 
@@ -20,7 +27,7 @@ You can install the development version of regressionLinear from
 ``` r
 #install.packages("devtools")
 devtools::install_github("GuoJennifer/regressionLinear")
-#> Skipping install of 'regressionLinear' from a github remote, the SHA1 (194d073a) has not changed since last install.
+#> Skipping install of 'regressionLinear' from a github remote, the SHA1 (2cce0e20) has not changed since last install.
 #>   Use `force = TRUE` to force installation
 ```
 
@@ -30,10 +37,9 @@ Alternatively, you can use:
 #install.packages("pak")
 pak::pak("GuoJennifer/regressionLinear")
 #> ! Using bundled GitHub PAT. Please add your own PAT using `gitcreds::gitcreds_set()`.
-#> ℹ Loading metadata database✔ Loading metadata database ... done
-#>  
+#> 
 #> ℹ No downloads are needed
-#> ✔ 1 pkg + 1 dep: kept 1 [7.9s]
+#> ✔ 1 pkg: kept 1 [2.8s]
 ```
 
 ## Example
@@ -43,7 +49,6 @@ this package:
 
 ``` r
 library(regressionLinear)
-## basic example code
 
 regressionLinear::lr_coefficients("mpg", c("cyl", "disp", "hp"), data=mtcars)
 #>         Estimate    Std_Err t_statistic      p_value

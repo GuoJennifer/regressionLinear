@@ -14,7 +14,7 @@ lr_coefficients(predictor, covariates, data = NULL)
 \item{data}{dataframe with data of interest}
 }
 \value{
-Matrix of estimates for regression coefficient,
+Matrix of estimates of regression coefficient,
  standard errors, and t tests with p-values
 }
 \description{
